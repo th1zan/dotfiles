@@ -7,11 +7,9 @@ fi
 
 alias inv='nvim $(fzf -m --preview="bat --color=always {}")'
 
-source /usr/local/share/powerlevel10k/powerlevel10k.zsh-theme
 eval "$(zoxide init --cmd cd zsh)"
 
 eval $(thefuck --alias)
-source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 # Set up fzf key bindings and fuzzy completion
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
@@ -24,3 +22,5 @@ source <(fzf --zsh)
 
 
 
+source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source /opt/homebrew/share/powerlevel10k/powerlevel10k.zsh-theme
