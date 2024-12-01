@@ -21,7 +21,7 @@ source <(fzf --zsh)
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
 
-
+source /opt/homebrew/share/zsh-autocomplete/zsh-autocomplete.plugin.zsh
 source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 source /opt/homebrew/share/powerlevel10k/powerlevel10k.zsh-theme
 export EDITOR="nvim"
