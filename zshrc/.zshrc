@@ -29,7 +29,8 @@ alias lg="lazygit"
 eval "$(zoxide init --cmd cd zsh)"
 
 # fzf (fuzzy finder)
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+# [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+source <(fzf --zsh) 
 
 # Preview file content using bat (https://github.com/sharkdp/bat)
 export FZF_ALT_C_OPTS="
