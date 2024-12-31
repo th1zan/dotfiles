@@ -82,6 +82,18 @@ alias fgf='_fzf_git_files'
 # Alias pour afficher les tags Git dans fzf
 alias fgt='_fzf_git_tags'
 
+#yazi options
+export EDITOR="nvim"
+
+function y() {
+	local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
+	yazi "$@" --cwd-file="$tmp"
+	if cwd="$(command cat -- "$tmp")" && [ -n "$cwd" ] && [ "$cwd" != "$PWD" ]; then
+		builtin cd -- "$cwd"
+	fi
+	rm -f -- "$tmp"
+}
+
 # thefuck (fix shell command typos)
 eval $(thefuck --alias)
 
