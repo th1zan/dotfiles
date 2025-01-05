@@ -15,7 +15,7 @@ alias c="clear"
 alias e="exit"
 alias inv='nvim $(fzf -m --preview="bat --color=always {}")'
 alias f="fzf"
-alias ls="eza --no-filesize --long --color=always --icons=always --no-user"
+alias ls="eza --no-filesize --long --color=always --icons=always --no-user --hyperlink"
 alias tree="tree -L 3 -a -I '.git' --charset X"
 alias dtree="tree -L 3 -a -d -I '.git' --charset X"
 alias gt="git"
@@ -24,6 +24,7 @@ alias gs="git status -s"
 alias gc='git commit -m'
 alias glog='git log --oneline --graph --all'
 alias lg="lazygit"
+alias zshrc="nvim ~/.zshrc"
 
 # zoxide (smart directory navigation)
 eval "$(zoxide init --cmd cd zsh)"
@@ -51,23 +52,23 @@ export FZF_CTRL_R_OPTS="
 
 
 # # ripgrep->fzf->neovim [QUERY]
-# rfv() (
-#   RELOAD='reload:rg --column --color=always --smart-case {q} || :'
-#   OPENER='if [[ $FZF_SELECT_COUNT -eq 0 ]]; then
-#             nvim {1} +{2}     # No selection. Open the current line in Neovim.
-#           else
-#             nvim +cw -q {+f}  # Build quickfix list for the selected items.
-#           fi'
-#   fzf --disabled --ansi --multi \
-#       --bind "start:$RELOAD" --bind "change:$RELOAD" \
-#       --bind "enter:become:$OPENER" \
-#       --bind "ctrl-o:execute:$OPENER" \
-#       --bind 'alt-a:select-all,alt-d:deselect-all,ctrl-/:toggle-preview' \
-#       --delimiter : \
-#       --preview 'bat --style=full --color=always --highlight-line {2} {1}' \
-#       --preview-window '~4,+{2}+4/3,<80(up)' \
-#       --query "$*"
-# )
+rfv() (
+  RELOAD='reload:rg --column --color=always --smart-case {q} || :'
+  OPENER='if [[ $FZF_SELECT_COUNT -eq 0 ]]; then
+            nvim {1} +{2}     # No selection. Open the current line in Neovim.
+          else
+            nvim +cw -q {+f}  # Build quickfix list for the selected items.
+          fi'
+  fzf --disabled --ansi --multi \
+      --bind "start:$RELOAD" --bind "change:$RELOAD" \
+      --bind "enter:become:$OPENER" \
+      --bind "ctrl-o:execute:$OPENER" \
+      --bind 'alt-a:select-all,alt-d:deselect-all,ctrl-/:toggle-preview' \
+      --delimiter : \
+      --preview 'bat --style=full --color=always --highlight-line {2} {1}' \
+      --preview-window '~4,+{2}+4/3,<80(up)' \
+      --query "$*"
+)
 
 source ~/scripts/fzf-git.sh
 
@@ -120,3 +121,6 @@ eval "$(pyenv init -)"
 
 # Fast system info fetch
 fastfetch
+
+# Created by `pipx` on 2025-01-04 15:26:25
+export PATH="$PATH:/Users/thibault/.local/bin"
