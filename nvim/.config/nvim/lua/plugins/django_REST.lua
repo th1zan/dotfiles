@@ -4,7 +4,6 @@ return {
     opts = {
       servers = {
         pyright = {},
-        django = {},
         tsserver = {}, -- Pour JavaScript
         eslint = {}, -- Pour JavaScript/HTML
       },

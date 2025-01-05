@@ -25,8 +25,9 @@ return {
               pylint = { enabled = false },
               jedi_rename = { enabled = true },
               jedi = {
+                environment = vim.fn.getcwd() .. "/env", -- Utilise ton environnement virtuel
                 extra_paths = {
-                  -- Ajoutez ici des chemins supplémentaires si nécessaire
+                  vim.fn.getcwd() .. "/transcendance", -- Chemin vers ton projet Django
                 },
               },
             },
