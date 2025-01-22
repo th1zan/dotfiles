@@ -47,11 +47,18 @@ return {
         ["<C-b>"] = cmp.mapping.scroll_docs(-4), -- scroll backward
         ["<C-f>"] = cmp.mapping.scroll_docs(4), -- scroll forward
         ["<C-Space>"] = cmp.mapping.complete({}), -- show completion suggestions
-        ["<CR>"] = cmp.mapping.confirm({
-          behavior = cmp.ConfirmBehavior.Replace,
-          select = true,
-        }),
-        -- Tab through suggestions or when a snippet is active, tab to the next argument
+        ["<C-l>"] = cmp.mapping(function()
+          vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<End>", true, true, true), "n", true)
+        end, { "i", "s" }), -- Aller à la fin de la ligne
+        ["<CR>"] = cmp.mapping(function(fallback)
+          if cmp.visible() then
+            -- Si une suggestion est visible, on la sélectionne sans faire de saut de ligne
+            cmp.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = true })
+          else
+            -- Sinon, on insère un saut de ligne
+            vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<CR>", true, true, true), "n", true)
+          end
+        end, { "i", "s" }), -- Tab through suggestions or when a snippet is active, tab to the next argument
         ["<Tab>"] = cmp.mapping(function(fallback)
           if cmp.visible() then
             cmp.select_next_item()
