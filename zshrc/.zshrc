@@ -124,3 +124,12 @@ fastfetch
 
 # Created by `pipx` on 2025-01-04 15:26:25
 export PATH="$PATH:/Users/thibault/.local/bin"
+
+function y() {
+	local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
+	yazi "$@" --cwd-file="$tmp"
+	if cwd="$(command cat -- "$tmp")" && [ -n "$cwd" ] && [ "$cwd" != "$PWD" ]; then
+		builtin cd -- "$cwd"
+	fi
+	rm -f -- "$tmp"
+}
