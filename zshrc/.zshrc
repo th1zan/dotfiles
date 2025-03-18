@@ -11,6 +11,7 @@ export GOPATH=$HOME/go
 export LANG=en_US.UTF-8
 
 # === Aliases ===
+alias se="source env/bin/activate"
 alias c="clear"
 alias e="exit"
 alias inv='nvim $(fzf -m --preview="bat --color=always {}")'
@@ -23,8 +24,9 @@ alias ga="git add ."
 alias gs="git status -s"
 alias gc='git commit -m'
 alias glog='git log --oneline --graph --all'
+alias ld="lazydocker"
 alias lg="lazygit"
-alias zshrc="nvim ~/.zshrc"
+alias zhrc="nvim ~/.zshrc"
 
 # zoxide (smart directory navigation)
 eval "$(zoxide init --cmd cd zsh)"

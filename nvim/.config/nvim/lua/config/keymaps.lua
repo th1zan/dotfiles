@@ -21,6 +21,11 @@ vim.keymap.set("v", "yyy", function()
   vim.cmd("silent normal! y")
 end, { noremap = true, silent = true })
 
+-- shortcut for vimtex
+vim.keymap.set("n", "<leader>cc", ":VimtexCompile<CR>", { desc = "Compile LaTeX" })
+vim.keymap.set("n", "<leader>cv", ":VimtexView<CR>", { desc = "View PDF" })
+vim.keymap.set("n", "<leader>ce", ":VimtexErrors<CR>", { desc = "Show Errors" })
+
 -- WhichKey plugin mappings for ChatGPT
 local wk = require("which-key")
 wk.add({

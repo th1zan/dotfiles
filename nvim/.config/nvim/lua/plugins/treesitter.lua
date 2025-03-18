@@ -11,6 +11,7 @@ return {
   opts = {
     highlight = {
       enable = true,
+      disable = { "tex" }, -- Désactive Tree-sitter pour les fichiers .tex
     },
     indent = { enable = true },
     auto_install = true, -- automatically install syntax support when entering new file type buffer
