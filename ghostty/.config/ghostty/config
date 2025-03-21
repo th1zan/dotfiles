@@ -1,3 +1,3 @@
-ptheme = catppuccin-mocha
+theme = catppuccin-mocha
 background-opacity = 0.95
 keybind = global:cmd+shift+w=toggle_quick_terminal

@@ -2,8 +2,24 @@
 -- Default keymaps that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/keymaps.lua
 -- Add any additional keymaps here
 
+-- Options pour les mappings
+local opts = { noremap = true, silent = true }
+
 -- open file_browser with the path of the current buffer
-vim.keymap.set("n", "<space>fb", ":Telescope file_browser path=%:p:h select_buffer=true<CR>")
+vim.keymap.set("n", "<space>fb", ":Telescope file_browser path=%:p:h select_buffer=true<CR>", opts)
+
+-- Raccourci 1 : En mode normal, 3x 'y' copie l'intégralité du document
+vim.keymap.set("n", "yyy", ":silent %y<CR>", opts)
+
+-- Raccourci 2 : En mode visuel, 3x 'y' copie la fonction entière où se trouve le curseur
+vim.keymap.set("v", "yyy", function()
+  -- Afficher un message de débogage (peut être supprimé après test)
+  vim.notify("Selecting function", vim.log.levels.INFO)
+  -- Sélectionner la fonction entière avec Treesitter
+  require("nvim-treesitter.textobjects.select").select_textobject("@function.outer")
+  -- Copier la sélection
+  vim.cmd("silent normal! y")
+end, { noremap = true, silent = true })
 
 -- WhichKey plugin mappings for ChatGPT
 local wk = require("which-key")
